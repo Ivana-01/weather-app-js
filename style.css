@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Popins', sans-serif;
+}
+body{
+    background-color: #1d1d1d;
+}
+.mainDiv{
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #747474, #b3b3b3);
+    color: #fff;
+    margin: 50px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+.pretraga{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pretraga input{
+    border: 0;
+    outline: 0;
+    background: #b3b3b3;
+    border-radius: 30px;
+    padding: 10px 25px;
+    color: #555;
+    height: 60px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+}
+.pretraga button{
+    border: 0;
+    outline: 0;
+    background: #b3b3b3;
+    border-radius: 30px;
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+.pretraga button:hover{
+    background-color: #555;
+}
+.pretraga button:active{
+    background-color: #1d1d1d;
+}
+.pretraga button img{
+    width: 16px;
+}
+.vreme-mainImg{
+    width: 170px;
+    margin-top: 30px;
+}
+.vreme h1{
+    font-size: 80px;
+    font-weight: 500;
+}
+.vreme h2{
+    font-size: 40px;
+    font-weight: 300;
+    margin-top: -10px;
+}
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 40px;
+}
+.kolona{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.kolona img{
+    width: 50px;
+    height: 70px;
+    padding: 10px 0;
+}
+.vlaga , .vetar , .subtemp{
+    font-size: 18px;
+    padding: 0 20px;
+}
+.vreme{
+    display: none;
+}
+.error{
+    margin: 10px 0 0 10px;
+    text-align: left;
+    font-size: 14px;
+    display: none;
+    color: #555;
+}

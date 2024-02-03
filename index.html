@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mainDiv">
+        <div class="pretraga">
+            <input type="text" placeholder="Enter city" spellcheck="false">
+            <button class="lupa"><img src="images/lupa.png" alt=""></button>
+        </div>
+        <div class="error">
+            <p>No match, please enter a valid city name!</p>
+        </div>
+        <div class="vreme">
+            <img class="mainImg" src="images/sunce.png" alt="sun">
+            <h1 class="temp">22°C</h1>
+            <h2 class="grad">Belgrade</h2>
+            <div class="info">
+                <div class="kolona">
+                    <img src="images/magla.png" alt="humidity">
+                    <div>
+                        <p>Humidity</p>
+                        <p class="vlaga">50%</p>
+                    </div>
+                </div>
+                <div class="kolona">
+                    <img src="images/vetar.png" alt="wind">
+                    <div>
+                        <p>Wind speed</p>
+                        <p class="vetar">20km/h</p>
+                    </div>
+                </div>
+                <div class="kolona">
+                    <img style="width: 20px;" src="images/man.png" alt="man">
+                    <div>
+                        <p>Sub. feeling</p>
+                        <p class="subtemp"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    const apiKey = "228ef8534664de0df99afa0878e1f615";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+    const poljeUnosa = document.querySelector(".pretraga input");
+    const dugmeLupa = document.querySelector(".pretraga button");
+    const Icon = document.querySelector('.mainImg');
+    async function proveriVreme(grad){
+        const odgovor = await fetch(apiUrl + grad + `&appid=${apiKey}`);
+        var data = await odgovor.json();
+        if (odgovor.status == 404){
+            document.querySelector(".error").style.display = "block";
+        } else {
+        document.querySelector(".error").style.display = "none";
+        document.querySelector(".grad").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+        document.querySelector(".vlaga").innerHTML = data.main.humidity + "%";
+        document.querySelector(".vetar").innerHTML = data.wind.speed + "km/h";
+        document.querySelector(".subtemp").innerHTML = data.main.feels_like + "°C";
+
+        if (data.weather[0].main == 'Clouds'){
+            Icon.src = "images/oblak.png";
+        } else if (data.weather[0].main == 'Clear'){
+            Icon.src = "images/sunce.png";
+        } else if (data.weather[0].main == 'Rain'){
+            Icon.src = "images/kisa.png";
+        } else if (data.weather[0].main == 'Drizzle'){
+            Icon.src = "images/grad.png";
+        } else if (data.weather[0].main == 'Mist'){
+            Icon.src = "images/magla.png";
+        } else {
+            Icon.src = "images/sneg.png";
+        }
+        document.querySelector(".vreme").style.display = 'block';
+        }
+    }
+    dugmeLupa.addEventListener("click", ()=>{
+        proveriVreme(poljeUnosa.value);
+    })
+
+</script>
+
+</body>
+</html>
